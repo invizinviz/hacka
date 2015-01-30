@@ -8,7 +8,7 @@ app.listen(process.env.PORT || 3000);
 app.set('views', './views');
 app.set('view engine', 'jade');
 app.use('/', express.static(__dirname + '/'));
-app.use(bodyParser());
+app.use(bodyParser.json());
 
 var twitter = new Twit({
   consumer_key: process.env.TWITTER_API_KEY,
