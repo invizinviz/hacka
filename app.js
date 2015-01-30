@@ -8,7 +8,7 @@ app.listen(process.env.PORT || 3000);
 app.set('views', './views');
 app.set('view engine', 'jade');
 app.use('/', express.static(__dirname + '/'));
-app.use(bodyParser.json());
+app.use(bodyParser());
 
 var twitter = new Twit({
   consumer_key: process.env.TWITTER_API_KEY,
@@ -37,7 +37,7 @@ app.post('/fight', function(req,res) {
   var player_2 = {};
 
   twitter.get('users/show', { screen_name: req.body['player_1'] },  function (err, data, response) {
-    console.log(data);
+    console.log(req.body['player_1']);
     player_1_screen_name = data.screen_name;
     player_1_tweet_count = data.statuses_count;
     var firstUnderscore = data.profile_image_url.indexOf('_');
